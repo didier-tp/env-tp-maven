@@ -1,0 +1,18 @@
+package com.mycompany.my_app.model;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class News {
+    private Long id;
+
+    private String title;
+
+    private String text;
+}

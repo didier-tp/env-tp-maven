@@ -1,0 +1,78 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>my-org</groupId>
+    <artifactId>common-parent</artifactId>
+    <version>0.0.2-SNAPSHOT</version>
+     <relativePath>../common-parent</relativePath> 
+  </parent>
+  <groupId>tp</groupId>
+  <version>0.0.1-SNAPSHOT</version>  
+  <artifactId>app-gui</artifactId>
+  <packaging>jar</packaging>
+  
+  
+  <dependencies>
+  
+     <dependency>
+          <groupId>tp</groupId>
+          <artifactId>app-core</artifactId>
+          <version>0.0.1-SNAPSHOT</version>
+     </dependency>
+  
+  </dependencies>
+  
+  <build>
+      <finalName>${project.artifactId}</finalName>
+	  <plugins>
+          <!--
+           <plugin>
+                   <groupId>org.apache.maven.plugins</groupId>
+                   <artifactId>maven-jar-plugin</artifactId>
+				   <version>3.5.1</version>
+                   <configuration>
+                       <archive>
+                           <manifest>
+                               <mainClass>tp.gui.TvaGuiApp</mainClass>
+                           </manifest>
+                       </archive>
+                   </configuration>
+           </plugin>
+           -->
+          <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-assembly-plugin</artifactId>
+          <version>3.8.0</version>
+          <configuration>
+              <!--
+              <descriptors>
+                  <descriptor>gui-assembly-descriptor.xml</descriptor>
+              </descriptors>
+              -->
+                <descriptorRefs>
+                    <descriptorRef>jar-with-dependencies</descriptorRef>
+                 </descriptorRefs>
+              <!-- jar-with-dependencies (assembly descriptor predefini) construit un seul gros ".jar"
+                   en fusionant le contenu de chacun des .jar et .zip tirés par dependances -->
+              <archive>
+                  <manifest>
+                      <mainClass>tp.gui.TvaGuiApp</mainClass>
+                  </manifest>
+              </archive>
+          </configuration>
+          <!-- sans bloc execution , declenchement via mvn assembly:assembly -->
+          <!-- avec bloc execution , declenchement possible via mvn package ou mvn install ou mvn deploy -->
+          <executions>
+              <execution>
+                  <id>create-archive</id>
+                  <phase>package</phase>
+                  <goals>
+                      <goal>single</goal>
+                  </goals>
+              </execution>
+          </executions>
+          </plugin>
+       </plugins>
+  </build>
+  
+</project>

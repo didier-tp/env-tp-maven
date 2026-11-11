@@ -1,0 +1,21 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>tp</groupId>
+  <artifactId>app-aggregate</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <modules>
+    <module>../common-parent</module>
+  	<module>../app-lib</module>
+  	<module>../app-core</module>
+	<module>../app-web</module>
+	<module>../app-gui</module>
+  </modules>
+  <description>Ce projet de type pom sert simplement
+à tout reconstruire d'un coup via mvn install 
+Les mécanismes reactor de maven vont  tenir compte des inter-dépendances 
+entre les projets référencés comme des modules et tout construire DANS LE BON ORDRE.
+Cependant , contrairement à un projet multi-modules classique les projets référencés 
+ne sont pas des sous-répertoires mais des répertoires de même niveau 
+et ces différents projets ont un autre parent que le projet courant app-aggregate</description>
+</project>

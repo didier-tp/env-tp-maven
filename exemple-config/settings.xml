@@ -1,0 +1,59 @@
+<settings>
+
+<mirrors>
+    <mirror>
+      <id>nexus</id>
+       <name>Nexus Public Mirror</name>
+      <!-- Remplacez l'URL par l'URL de votre dépôt ou groupe Nexus 3 (ex: maven-public) -->
+      <url>http://localhost:8081/repository/maven-public/</url>
+     <!-- <mirrorOf>central</mirrorOf> -->
+	   <mirrorOf>*</mirrorOf>
+    </mirror> 
+   </mirrors>
+
+<servers>
+    <!-- SAMES ID in pom.xml  <distributionManagement>   <repository>   <id>releases or snaphosts</id> -->
+    <server>
+      <id>snapshots</id>
+      <username>admin</username>
+      <password>admin123</password>
+    </server>
+    <server>
+      <id>releases</id>
+      <username>admin</username>
+      <password>admin123</password>
+    </server>
+  </servers>
+  
+  <profiles>
+		<profile>
+		<id>nexus</id>
+		<!--Enable snapshots for the built in central repo to direct -->
+		<!--all requests to nexus via the mirror -->
+		<repositories>
+			<repository>
+			<id>central</id>
+			<url>http://repo1.maven.org/maven2</url>
+			<releases><enabled>true</enabled></releases>
+			<snapshots><enabled>true</enabled></snapshots>
+			</repository>
+		</repositories>
+		<pluginRepositories>
+			<pluginRepository>
+					  <id>central</id>
+					  <url>http://repo1.maven.org/maven2</url>
+					  <releases><enabled>true</enabled></releases>
+					  <snapshots><enabled>true</enabled></snapshots>
+					</pluginRepository>
+		</pluginRepositories>
+		</profile>
+  </profiles>
+  
+  <activeProfiles>
+    <!--make the profile active all the time -->
+    <activeProfile>nexus</activeProfile>
+  </activeProfiles>
+
+ 
+  
+</settings>

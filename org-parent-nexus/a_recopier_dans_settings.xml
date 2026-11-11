@@ -1,0 +1,104 @@
+<settings>
+
+<!-- configuration d'un miroir (dans .m2/settings.xml) 
+             pour demander a passer indirectement par nexus public pour acceder autres autres repos 
+ 	<mirrorOf>central,jboss.org,maven2-repository.dev.java.net</mirrorOf> 
+	ou bien	<mirrorOf>*</mirrorOf> -->
+
+<!--
+<mirrors>        
+	<mirror>
+		<id>public</id>
+		<url>http://localhost:8484/nexus/content/groups/public/</url>
+		<mirrorOf>*</mirrorOf>
+	</mirror>
+</mirrors>
+-->
+
+<!-- configuration a activer s'il faut passer par un proxy http pour acceder au reseau internet depuis maven -->
+<proxies>
+<proxy>
+<active>false</active>
+<protocol>http</protocol>
+<!-- <username>username</username>
+<password>pwd</password> -->
+<port>8080</port>
+<host>my.proxy.url</host>
+<!-- <nonProxyHosts>localhost,www.google.com|*.somewhere.com</nonProxyHosts> -->
+<!-- <id>idOfProxy</id> -->
+</proxy>
+</proxies>
+
+
+<servers>
+	<server>
+		<id>releases</id>
+		<username>admin</username>
+		<password>admin123</password> <!-- mot de passe pour repo nexus  dans .m2/settings.xml -->
+	</server>
+	<server>
+		<id>snapshots</id>
+		<username>admin</username>
+		<password>admin123</password> <!-- mot de passe pour repo nexus  dans .m2/settings.xml -->
+	</server>
+        <!--
+	<server>
+		<id>public</id>
+		<username>admin</username>
+		<password>admin123</password>
+	</server>
+	-->
+</servers>
+
+
+<profiles>
+<profile>
+<id>nexus</id>
+<!--Enable snapshots for the built in central repo to direct -->
+<!--all requests to nexus via the mirror -->
+<repositories>
+<repository>
+<id>central</id>
+<url>http://repo1.maven.org/maven2</url>
+<releases><enabled>true</enabled></releases>
+<snapshots><enabled>true</enabled></snapshots>
+</repository>
+</repositories>
+<pluginRepositories>
+<pluginRepository>
+<id>central</id>
+<url>http://repo1.maven.org/maven2</url>
+<releases><enabled>true</enabled></releases>
+<snapshots><enabled>true</enabled></snapshots>
+</pluginRepository>
+</pluginRepositories>
+</profile>
+
+<profile>
+<id>sonar</id>
+<activation>
+<activeByDefault>true</activeByDefault>
+</activation>
+<properties>
+<!-- EXAMPLE FOR MYSQL -->
+<sonar.jdbc.url>
+jdbc:mysql://localhost:3306/sonar?useUnicode=true&amp;characterEncoding=utf8
+</sonar.jdbc.url>
+<sonar.jdbc.driverClassName>com.mysql.jdbc.Driver</sonar.jdbc.driverClassName>
+<sonar.jdbc.username>sonar</sonar.jdbc.username>
+<sonar.jdbc.password>sonar</sonar.jdbc.password>
+<!-- optional URL to server. Default value is http://localhost:9000 -->
+<sonar.host.url>
+http://localhost:9000
+</sonar.host.url>
+</properties>
+</profile>
+
+
+</profiles>
+<activeProfiles>
+<!--make the profile active all the time -->
+<activeProfile>nexus</activeProfile>
+</activeProfiles>
+
+</settings>
