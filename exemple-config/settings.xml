@@ -23,6 +23,10 @@
       <username>admin</username>
       <password>admin123</password>
     </server>
+	     <server>
+            <id>github</id>
+            <password>valid_github_Authtoken</password>
+        </server>
   </servers>
   
   <profiles>
