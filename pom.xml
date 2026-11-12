@@ -5,7 +5,7 @@
 
     <groupId>tp</groupId>
     <artifactId>env-tp-maven</artifactId>
-    <version>1.1</version>
+    <version>1.2-SNAPSHOT</version>
 	
 	<scm> 
 	<!-- scm = source code manager configuration utilisée par les plugins "scm" et "release" -->
@@ -13,7 +13,7 @@
 	<connection>scm:git:https://github.com/didier-tp/env-tp-maven</connection> 
 	<!-- rw --> 
 	<developerConnection>scm:git:https://github.com/didier-tp/env-tp-maven</developerConnection>
-	<tag>env-tp-maven-1.1</tag> 
+	<tag>HEAD</tag> 
 	<url>https://github.com/didier-tp/env-tp-maven</url> 
 	</scm>
 	
