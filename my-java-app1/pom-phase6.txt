@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+
+	<parent>
+	   <groupId>tp</groupId>
+       <artifactId>org-parent-nexus</artifactId>
+       <version>1.0-RELEASED</version>
+	</parent>
+
+    <groupId>tp</groupId>
+    <artifactId>my-java-app1</artifactId>
+    <version>1.2-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.release>21</maven.compiler.release>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <junit.version>6.1.3</junit.version>
+        <slf4j.level>debug</slf4j.level>
+    </properties>
+
+    <profiles>
+        <profile>
+            <id>prod</id> <!-- if -P prod -->
+            <activation>
+               <property>
+                <name>mode</name>
+                <value>prod</value> <!-- or if -Dmode=prod -->
+              </property>
+            </activation>
+            <properties>
+                <slf4j.level>error</slf4j.level>
+            </properties>
+        </profile>
+    </profiles>
+
+    <scm>
+        <!-- scm = source code manager configuration utilisée par les plugins "scm" et "release" -->
+        <!-- ro -->
+        <connection>scm:git:file:///C:\temp\shared-git\my-java-app1.git</connection>
+        <!-- rw -->
+        <!-- ok with GitHub rw (with memorized git authentication at localhost level -->
+        <developerConnection>scm:git:file:///C:\temp\shared-git\my-java-app1.git</developerConnection>
+        <tag>HEAD</tag>
+        <url>file:///C:\temp\shared-git\my-java-app1.git</url>
+    </scm>
+
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>tp</groupId>
+                <artifactId>slf4j-bom</artifactId>
+                <version>1.0-SNAPSHOT</version> <!-- ou 1.0 -->
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <!-- <artifactId>junit-jupiter-engine</artifactId> -->
+            <artifactId>junit-jupiter-params</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-suite</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j2-impl</artifactId>
+        </dependency>
+
+
+    </dependencies>
+
+    <build>
+        <finalName>${project.artifactId}-${project.version}</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-scm-plugin</artifactId>
+                <configuration>
+                    <connectionType>developerConnection</connectionType>
+                    <scmVersion>main</scmVersion> <!-- default is master -->
+                    <scmVersionType>branch</scmVersionType>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

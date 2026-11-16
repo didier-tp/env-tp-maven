@@ -12,6 +12,7 @@
 	<!-- ro --> 
 	<connection>scm:git:https://github.com/didier-tp/env-tp-maven</connection> 
 	<!-- rw --> 
+        <!-- ok with GitHub rw (with memorized git authentication at localhost level -->
 	<developerConnection>scm:git:https://github.com/didier-tp/env-tp-maven</developerConnection>
 	<tag>HEAD</tag> 
 	<url>https://github.com/didier-tp/env-tp-maven</url> 

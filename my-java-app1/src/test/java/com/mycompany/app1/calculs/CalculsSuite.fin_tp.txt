@@ -1,0 +1,21 @@
+package com.mycompany.app1.calculs;
+
+
+import org.junit.platform.suite.api.SelectClasses;
+import org.junit.platform.suite.api.Suite;
+
+@Suite
+//@IncludeTags({"FastTests"})
+//@ExcludeTags({"SlowTests", "SecondaryTests"})
+@SelectClasses({
+        TestSerie.class ,
+        TestParametreCalculsFinanciers.class
+})
+public class CalculsSuite {
+}
+
+/*
+mvn package -DskipTests=true
+mvn test
+mvn test -Dtest=CalculsSuite
+*/

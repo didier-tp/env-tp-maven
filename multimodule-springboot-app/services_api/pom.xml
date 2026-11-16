@@ -67,6 +67,27 @@
 		</dependency>
 	</dependencies>
 
-	
+	<!-- if <classifier>exec</classifier> , maven generate a new ....-exec/.jar with all dependencies ,
+	    without classifier , repackaged jar as the original finalName -->
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+						<!--
+						<configuration>
+							<classifier>exec</classifier>
+						</configuration>
+						-->
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>

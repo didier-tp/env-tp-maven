@@ -17,7 +17,11 @@
 		<mapstruct.version>1.6.3</mapstruct.version>
 	</properties>
 	
-	
+
+	<!-- spring-boot-dependencies is a predefined BOM maintained by spring
+	     this sub-dependencies is usually indirectly imported by spring-boot-starter-parent
+	-->
+
 	<dependencyManagement>
     <dependencies>
       <dependency>
@@ -49,10 +53,6 @@
 
 
 	<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
