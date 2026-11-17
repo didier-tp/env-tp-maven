@@ -65,6 +65,12 @@
 			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
 			<version>3.1.1</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional>
+		</dependency>
 	</dependencies>
 
 	<!-- if <classifier>exec</classifier> , maven generate a new ....-exec/.jar with all dependencies ,
@@ -76,6 +82,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<executions>
 					<execution>
+						<id>repackage_build</id>
 						<goals>
 							<goal>repackage</goal>
 						</goals>
@@ -84,6 +91,34 @@
 							<classifier>exec</classifier>
 						</configuration>
 						-->
+					</execution>
+					<execution>
+						<id>pre_integration_startr</id>
+						<goals>
+							<goal>start</goal>
+						</goals>
+						<phase>pre-integration-test</phase>
+					</execution>
+					<execution>
+						<id>post_integration_stop</id>
+						<goals>
+							<goal>stop</goal>
+						</goals>
+						<phase>post-integration-test</phase>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>3.6.1</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>integration-test</goal>
+							<goal>verify</goal>
+						</goals>
+						<configuration>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>
